@@ -2,10 +2,10 @@ class TicTacToe
 	
 	@@score = {"X" => 0, "O" => 0}
 	@@round = 1
-	WINNING_PATTERNS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]] #this should be a constant
+	WINNING_PATTERNS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]] 
 	attr_accessor :player_x, :player_o, :board, :current_player, :turn   
 		
-	def start #this can just be a instance method instead of a class method since there's only going to ever be one instance of Game at a time
+	def start 
 		@turn = 1
 		@available_spaces = [*1..9]
 		@x_array = []
