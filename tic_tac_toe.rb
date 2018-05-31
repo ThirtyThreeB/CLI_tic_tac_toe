@@ -115,7 +115,6 @@ class TicTacToe
 		while keep_playing != "y" && keep_playing != "n"
 			puts "Um.. y/n?"
 			keep_playing = gets.chomp
-			p keep_playing
 		end
 
 		if keep_playing == "y"
