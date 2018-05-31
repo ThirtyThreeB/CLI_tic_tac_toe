@@ -1,24 +1,27 @@
 class TicTacToe
 	
-	@@score = {"X" => 0, "O" => 0}
-	@@round = 1
 	WINNING_PATTERNS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]] 
-	attr_accessor :player_x, :player_o, :board, :current_player, :turn   
+	#attr_accessor :player_x, :player_o, :board, :current_player, :turn   
 		
-	def start 
+	def initialize 
+		@score = {"X" => 0, "O" => 0}
+		@round = 1
+		start
+	end
+
+	def start
 		@turn = 1
-		@available_spaces = [*1..9]
 		@x_array = []
 		@o_array = []
+		@available_spaces = [*1..9]
 		@board = "   1 2 3\n   4 5 6\n   7 8 9"
 
-		if @@round == 1
+		if @round == 1
 			puts @board
 			puts "Here is the gameboard,\nyou'll play by entering the number\nthat corresponds with the space you choose"
 			choose_team
 		else 
-			puts "Let's play round #{@@round}"
-			#puts @board
+			puts "Let's play round #{@round}"
 		end	
 		whose_turn
 	end
@@ -41,7 +44,7 @@ class TicTacToe
 
 	def whose_turn 
 
-		if @@round%2 == 1 # X's starting round when odd
+		if @round%2 == 1 # X's starting round when odd
 			@first_player, @second_player = "X", "O"
 		else
 			@first_player, @second_player = "O", "X"
@@ -51,13 +54,12 @@ class TicTacToe
 	end
 
 	def play_turn(player) 
-		p @turn
 		puts "Player #{player} goes first this round" unless @turn > 1
 		puts "Player #{player} choose a space"
 		puts @board
 		val_choice(player)
 		@turn += 1
-		end_game #should this be called end_game? even though it doesn't return a boolean?
+		end_game 
 		whose_turn
 	end
 
@@ -86,12 +88,12 @@ class TicTacToe
 		WINNING_PATTERNS.each do |pattern|
 			if pattern- @x_array == []
 		 		puts "X wins!" 
-		 		@@score["X"] += 1
+		 		@score["X"] += 1
 		 		reset
 		 	end
 		  if pattern- @o_array == []
 		 		puts "O wins!" 
-		 		@@score["O"] += 1
+		 		@score["O"] += 1
 		 		reset
 		  end
 		end
@@ -102,12 +104,30 @@ class TicTacToe
 	end
 
 	def reset #clear board
-		puts "The score is Player X- #{@@score["X"]}, Player O- #{@@score["O"]}"
-		@@round += 1
-		start
+		puts "The score is Player X- #{@score["X"]}, Player O- #{@score["O"]}"
+		@round += 1
+		play_again
 	end
 	
+	def play_again
+		puts "That was awesome! You want to keep playing right? Enter y/n"
+		keep_playing = gets.chomp
+		while keep_playing != "y" && keep_playing != "n"
+			puts "Um.. y/n?"
+			keep_playing = gets.chomp
+			p keep_playing
+		end
+
+		if keep_playing == "y"
+			puts "Sweet, I bet this next round will be even more fun!" 
+		  start 
+		else
+			puts "Alright. Well, good luck finding something better to do. "  
+		  exit
+		end
+	end
+
 end
 
-game = TicTacToe.new
-game.start
+TicTacToe.new
+
