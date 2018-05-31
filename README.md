@@ -1,2 +1,3 @@
-# CLI_tic_tac_toe
-CLI game of tic tac toe written in Ruby
+Run thisfrom the command line with:
+
+ruby tic_tac_toe.rb 
