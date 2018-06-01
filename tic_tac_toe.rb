@@ -21,7 +21,6 @@ class TicTacToe
 		new_round = false
 	end
 
-		
 	def x_or_o #validate choice of team either x or o
 		team_choice = nil
 		puts "You are the first player,\ndo you want to be X's or O's ?" if team_choice.nil?
