@@ -24,7 +24,7 @@ class TicTacToe
 		
 	def x_or_o #validate choice of team either x or o
 		team_choice = nil
-		puts "You are the first player, do you want to be X's or O's ?" if team_choice.nil?
+		puts "You are the first player,\ndo you want to be X's or O's ?" if team_choice.nil?
 		team_choice = gets.chomp.upcase
 		if team_choice == 'X' || team_choice == 'O' 
 		  puts "Cool, you're on team #{team_choice}" 
@@ -56,7 +56,7 @@ class TicTacToe
 		@choice = gets.chomp
 		if @available_spaces.include?(@choice.to_i) 
 			@board = @board.gsub(@choice, @player)
-			puts @board
+			#puts @board
 			@available_spaces.delete(@choice.to_i)
 		else
 			puts "Nope, enter an available space.  Try again" 
@@ -91,7 +91,6 @@ class TicTacToe
 			puts "Cat's game"  
 			@winner = true
 		end
-		p @turn
 	end
 
 	def update_score #clear board
