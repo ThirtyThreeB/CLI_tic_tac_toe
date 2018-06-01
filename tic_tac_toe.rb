@@ -1,15 +1,11 @@
 class TicTacToe
 	
 	WINNING_PATTERNS = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7]] 
-	#attr_accessor :player_x, :player_o, :board, :current_player, :turn   
 		
 	def initialize 
 		@score = {"X" => 0, "O" => 0}
 		@round = 1
-		
 		puts "Play by entering the number\nthat corresponds with the space you choose"
-		#puts @board
-		# start
 	end
 
 	def start
@@ -19,8 +15,6 @@ class TicTacToe
 		@available_spaces = [*1..9]
 		@board = "   1 2 3\n   4 5 6\n   7 8 9"
 		@winner = false
-		# puts "Let's play round #{@round}"
-		#whose_turn
 	end
 
 	def new_round
@@ -42,16 +36,12 @@ class TicTacToe
 	end
 
 	def whose_turn # alternates which player starts each round
-		if @round%2 == 1 # X's starting round when odd
+		if @round%2 == 1 
 			@first_player, @second_player = "X", "O"
 		else
 			@first_player, @second_player = "O", "X"
 		end	
 	end
-
-	# def switch_turn # switches players every turn
-	# 	#@turn%2 == 1 ? play_turn(@first_player) : play_turn(@second_player) 
-	# end
 
 	def play_turn
 		puts "Let's play round #{@round}" if @round > 1 && @turn == 0
@@ -59,10 +49,7 @@ class TicTacToe
 		puts "Player #{@player} goes first this round" unless @turn > 1
 		puts "Player #{@player} choose a space"
 		puts @board
-		
-		# val_choice(player)
 		@turn += 1
-		#player
 	end
 
 	def val_choice #make sure only 1-9, or whatever is left is entered
@@ -70,8 +57,6 @@ class TicTacToe
 		if @available_spaces.include?(@choice.to_i) 
 			@board = @board.gsub(@choice, @player)
 			puts @board
-			#return choice, player
-			# chosen_spaces(choice, player) #not sure how to get choice, player to return so I can pull this method out to the game
 			@available_spaces.delete(@choice.to_i)
 		else
 			puts "Nope, enter an available space.  Try again" 
@@ -102,7 +87,7 @@ class TicTacToe
 		 		return
 		  end
 		end
-		if @turn == 9 #&& @winner = false
+		if @turn == 9 
 			puts "Cat's game"  
 			@winner = true
 		end
@@ -114,7 +99,6 @@ class TicTacToe
 			puts "The score is Player X- #{@score["X"]}, Player O- #{@score["O"]}" 
 			@round += 1
 		end
-		# play_again
 	end
 
 	def round_is_over?
@@ -138,8 +122,6 @@ class TicTacToe
 		end
 	end
 
-
-
 	def is_over?
 		@game_over
 	end
@@ -152,7 +134,7 @@ class TicTacToe
 end
 
 game = TicTacToe.new
-#game.start
+
 game.x_or_o
 while !game.is_over?
 	round = game
